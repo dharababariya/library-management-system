@@ -1,7 +1,6 @@
 //knex config
-// const express = require('express');
-// const app = express();
-const knex = require('../../../helpers/knex');
+
+const knex = require('../helpers/knex');
 
 module.exports = function (app) {
 
