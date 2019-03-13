@@ -4,7 +4,7 @@
 module.exports = {
   local: {
     client: 'postgresql',
-    connection: process.env.DATABASE_URL,
+    connection: {host: '127.0.0.1', user: 'postgres', password: '', database: 'library_management'},
     pool: {
       min: 2,
       max: 10
