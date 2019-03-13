@@ -1,7 +1,7 @@
 //Import modules
 
 const express = require('express');
-const session = require('express-session');
+const expressSession = require('express-session');
 const dotenv = require('dotenv');
 const port = 8080;
 const schema = require('async-validator');
@@ -15,16 +15,21 @@ const app = express();
 dotenv.config();
 
 //decode usrl in simplest form
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 //common routes
-const signup = require('./routes/v1/registration/sign_up');
+const signup = require('./controllers/sign_up');
+const login = require('./controllers/login');
+
 
 //fire
 signup(app);
+login(app);
 
 //midleware
+app.use(expressSession({secret: 'my top secret pass', resave: false, saveUninitialized: true}));
 app.use('/css', express.static(__dirname + '/css'));
+app.use('/images', express.static(__dirname + '/images'));
 
 //set view engine
 app.set('view engine', 'ejs');
